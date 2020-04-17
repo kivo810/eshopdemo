@@ -1,6 +1,6 @@
-package com.simpleshop.dao;
+package cz.ucl.dao;
 
-import com.simpleshop.model.customer.Customer;
+import cz.ucl.model.customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerRep extends JpaRepository <Customer, Integer> {

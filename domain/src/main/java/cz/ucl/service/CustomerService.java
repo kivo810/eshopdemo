@@ -1,7 +1,7 @@
-package com.simpleshop.service;
+package cz.ucl.service;
 
-import com.simpleshop.dao.CustomerRep;
-import com.simpleshop.model.customer.Customer;
+import cz.ucl.dao.CustomerRep;
+import cz.ucl.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.simpleshop.model.customer;
+package cz.ucl.model.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,11 +13,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Customer {
+public class Product {
     @Id
     private int id;
     private String name;
-    private String surname;
-    private String address;
-    private String email;
+    private String description;
+    private Double price;
+    private int available;
 }

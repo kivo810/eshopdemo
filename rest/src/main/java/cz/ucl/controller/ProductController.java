@@ -1,7 +1,7 @@
-package com.simpleshop.controller;
+package cz.ucl.controller;
 
-import com.simpleshop.model.product.Product;
-import com.simpleshop.service.ProductService;
+import cz.ucl.model.product.Product;
+import cz.ucl.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
