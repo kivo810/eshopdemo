@@ -18,10 +18,24 @@ public class ProductService {
 
     @PostConstruct
     public void initProducts(){
-        productRepository.saveAll(Stream.of
-                (new Product(1,"socks","red", 12.20,15),
-                        new Product(2,"shoes","blue",15.00,16))
-                .collect(Collectors.toList()));
+        Product newOne = new Product();
+        newOne.setName("Socks");
+        newOne.setDescription("old");
+        newOne.setPrice(12.00);
+        newOne.setAvailable(15);
+        productRepository.save(newOne);
+        Product aa = new Product();
+        aa.setName("ere");
+        aa.setDescription("sa");
+        aa.setPrice(1.00);
+        aa.setAvailable(1000);
+        productRepository.save(aa);
+        Product rr = new Product();
+        rr.setName("boots");
+        rr.setDescription("new");
+        rr.setPrice(101.10);
+        rr.setAvailable(22);
+        productRepository.save(rr);
     }
 
     public List<Product> getAllProducts(){
