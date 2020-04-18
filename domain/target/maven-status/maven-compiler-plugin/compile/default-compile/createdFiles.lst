@@ -1,0 +1,6 @@
+cz\ucl\dao\CustomerRep.class
+cz\ucl\service\CustomerService.class
+cz\ucl\dao\ProductRepository.class
+cz\ucl\model\product\Product.class
+cz\ucl\model\customer\Customer.class
+cz\ucl\service\ProductService.class

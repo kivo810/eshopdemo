@@ -24,6 +24,8 @@ public class CustomerService {
                 .collect(Collectors.toList()));
     }
 
+
+
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }

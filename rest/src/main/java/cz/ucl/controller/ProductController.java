@@ -3,9 +3,7 @@ package cz.ucl.controller;
 import cz.ucl.model.product.Product;
 import cz.ucl.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,11 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getProducts(){
         return productService.getAllProducts();
+    }
+
+    @GetMapping(value = "/products/{id}")
+    public String getProduct(@PathVariable Integer id) {
+
+        return productService.getProduct(id).toString();
     }
 }
