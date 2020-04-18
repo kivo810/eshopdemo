@@ -19,8 +19,8 @@ public class CustomerService {
     @PostConstruct
     public void initCustomers(){
         customerRepository.saveAll(Stream.of
-                (new Customer(1,"John","Cardiac", "new","xxx"),
-                        new Customer(2,"peter","eye","old","newone"))
+                (new Customer(56415616,"John","Cardiac", "new","xxx","aaa"),
+                        new Customer(2,"peter","eye","old","newone","bbb"))
                 .collect(Collectors.toList()));
     }
 
