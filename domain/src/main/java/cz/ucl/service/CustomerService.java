@@ -1,6 +1,6 @@
 package cz.ucl.service;
 
-import cz.ucl.dao.CustomerRep;
+import cz.ucl.dao.CustomerRepository;
 import cz.ucl.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class CustomerService {
 
     @Autowired
-    CustomerRep customerRepository;
+    CustomerRepository customerRepository;
 
     @PostConstruct
     public void initCustomers(){

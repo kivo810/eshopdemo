@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 public class Product {
     @Id
-    @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
@@ -23,10 +22,4 @@ public class Product {
     @ManyToOne
     private ShopOrder shopOrder;
 
-    public Product(String name, String description, Double price, int available) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.available = available;
-    }
 }

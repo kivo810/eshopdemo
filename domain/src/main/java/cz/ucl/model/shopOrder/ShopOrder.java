@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -19,9 +19,15 @@ public class ShopOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private boolean completed;
-    private LocalDateTime completedAt;
+    private Timestamp completedAt;
+    private Double finalPrice;
     private int customerId;
+
+    //CUSTOMER
+    private String name;
+    private String email;
+    private String address;
+    private String cardNumber;
 
     @OneToMany
     private List<Product> productList;
