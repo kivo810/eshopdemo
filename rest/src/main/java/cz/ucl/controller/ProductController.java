@@ -25,11 +25,12 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public void addProduct(Product product){
-        product.setName("newname");
-        product.setAvailable(100);
-        product.setDescription("popoospis");
-        product.setPrice(18.98);
+    public void addProduct(@RequestBody Product product){
+//        product.setName("newname");
+//        product.setAvailable(100);
+//        product.setDescription("popoospis");
+//        product.setPrice(18.98);
+//        productService.addProduct(product);
         productService.addProduct(product);
     }
 

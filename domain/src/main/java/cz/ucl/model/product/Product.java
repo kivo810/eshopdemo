@@ -1,11 +1,9 @@
 package cz.ucl.model.product;
 
+import cz.ucl.model.shopOrder.ShopOrder;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +19,9 @@ public class Product {
     private String description;
     private Double price;
     private int available;
+
+    @ManyToOne
+    private ShopOrder shopOrder;
 
     public Product(String name, String description, Double price, int available) {
         this.name = name;

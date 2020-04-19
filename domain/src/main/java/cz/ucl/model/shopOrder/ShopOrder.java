@@ -1,15 +1,14 @@
 package cz.ucl.model.shopOrder;
 
+import cz.ucl.model.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +22,7 @@ public class ShopOrder {
     private boolean completed;
     private LocalDateTime completedAt;
     private int customerId;
+
+    @OneToMany
+    private List<Product> productList;
 }

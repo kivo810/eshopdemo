@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -19,16 +21,23 @@ public class OrderService {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ProductService productService;
+
     @PostConstruct
     public void initOrders(){
-        ShopOrder a = new ShopOrder();
-        a.setCompleted(false);
-        a.setCompletedAt(LocalDateTime.now());
-        orderRepository.save(a);
+        ShopOrder aa = new ShopOrder();
+        aa.setCompleted(false);
+        aa.setCompletedAt(LocalDateTime.now());
+        Product product = productService.getProduct(2);
+        List<Product> qq = new ArrayList();
+        qq.add(product);
+        aa.setProductList(qq);
+        orderRepository.save(aa);
     }
 
+    public void addProductsToOrderString(){
 
-    public void addProductToOrder(int id){
     }
 
 }
