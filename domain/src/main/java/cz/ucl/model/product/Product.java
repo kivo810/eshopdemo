@@ -20,7 +20,7 @@ public class Product {
     private Double price;
     private int available;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private ShopOrder shopOrder;
 
     public Product(String name, String description, Double price, int available) {

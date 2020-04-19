@@ -19,9 +19,6 @@ public class OrderService {
     OrderRepository orderRepository;
 
     @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
     ProductService productService;
 
     @PostConstruct
@@ -29,9 +26,9 @@ public class OrderService {
         ShopOrder aa = new ShopOrder();
         aa.setCompleted(false);
         aa.setCompletedAt(LocalDateTime.now());
-        Product product = productService.getProduct(2);
         List<Product> qq = new ArrayList();
-        qq.add(product);
+        qq.add(productService.getProduct(1));
+        qq.add(productService.getProduct(3));
         aa.setProductList(qq);
         orderRepository.save(aa);
     }
