@@ -15,4 +15,24 @@ public class CartService {
     public void initCart(){
         cart = new ArrayList<>();
     }
+
+    public List<Product> getCart(){
+        return cart;
+    }
+
+    public void addProductToCart(Product product){
+        cart.add(product);
+    }
+
+    public void deleteProductFromCartViaId(int id){
+        cart.remove(id);
+    }
+
+//    public void deleteProductFromCart(Product product){
+//        cart.remove(product);
+//    }
+
+    public void removeCart(){
+        cart = new ArrayList<>();
+    }
 }
