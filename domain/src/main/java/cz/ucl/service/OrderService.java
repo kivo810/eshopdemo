@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -18,6 +19,10 @@ public class OrderService {
     }
 
     public List<ShopOrder> orderByCompletedAt() {
-        return orderRepository.findAllByCompletedAtOrderByCompletedAtAsc();
+        return orderRepository.orderByCompletedAt();
+    }
+
+    public Optional<ShopOrder> getOrderById(int id){
+        return orderRepository.findById(id);
     }
 }
