@@ -23,4 +23,19 @@ public class ProductController {
 
         return productService.getProduct(id).toString();
     }
+
+    @PostMapping("/products")
+    public void addProduct(Product product){
+        product.setName("newname");
+        product.setAvailable(100);
+        product.setDescription("popoospis");
+        product.setPrice(18.98);
+        productService.addProduct(product);
+    }
+
+    @DeleteMapping(value = "/products/{id}")
+    public void deleteProduct(@PathVariable Integer id){
+        productService.deleteProduct(id);
+    }
+
 }

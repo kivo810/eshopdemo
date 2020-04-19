@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ProductService {
@@ -45,5 +43,13 @@ public class ProductService {
 
     public Product getProduct(int id) {
         return productRepository.getOne(id);
+    }
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    public void deleteProduct(int id) {
+        productRepository.deleteById(id);
     }
 }
