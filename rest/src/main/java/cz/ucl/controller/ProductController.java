@@ -26,7 +26,7 @@ public class ProductController {
     @ResponseBody
     public ResponseEntity<Object> getProduct(HttpEntity<String> httpEntity, @PathVariable Integer id) {
         if (productService.getProductFromId(id).isEmpty()){
-            return ResponseEntity.status(400).body("No product with this ID.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No product with this ID.");
         }
         else {
             return ResponseEntity.status(HttpStatus.OK).body(productService.getProductFromId(id));
@@ -37,15 +37,15 @@ public class ProductController {
     @PostMapping("/products")
     public ResponseEntity<Object> addProduct(@RequestBody Product product){
         if(product.getName() == null || product.getName().equals("")){
-            return ResponseEntity.status(400).body("Name is empty or null!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Name is empty or null!");
         }
 
         if (product.getPrice() > 100000.00 || product.getPrice() < 0) {
-            return ResponseEntity.status(400).body("Price is below 0 or higher than 100000");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Price is below 0 or higher than 100000");
         }
 
         if (product.getAvailable() < 0){
-            return ResponseEntity.status(400).body("There must be at least one product");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("There must be at least one product");
         }
 
         productService.addProduct(product);

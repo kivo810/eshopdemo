@@ -5,12 +5,9 @@ import cz.ucl.service.CartService;
 import cz.ucl.service.OrderService;
 import cz.ucl.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -44,11 +41,11 @@ public class WebController {
         return "cart";
     }
 
-//    @PostMapping(value = "/addToCart")
-//    @ResponseBody
-//    public ResponseEntity<Object> addToCart(){
-//
-//    }
+    //TODO -- add product to cart
+
+    //TODO -- remove product from cart
+
+    //TODO -- complete order, write to DB
 
     @GetMapping(value = "/succesfulOrder")
     public String succesfulOrder (Model model) {
