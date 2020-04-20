@@ -35,4 +35,13 @@ public class CartService {
     public void removeCart(){
         cart = new ArrayList<>();
     }
+
+    public Double calculateFinalPrice(){
+        Double finalPrice = 0.00;
+
+        for (Product product : cart) {
+            finalPrice += product.getPrice();
+        }
+        return finalPrice;
+    }
 }
