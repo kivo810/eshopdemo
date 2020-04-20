@@ -44,4 +44,9 @@ public class CartService {
         }
         return finalPrice;
     }
+
+    //TODO
+    public int calculatAvailable(){
+        return 0;
+    }
 }

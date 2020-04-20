@@ -4,6 +4,7 @@ import cz.ucl.model.product.Product;
 import cz.ucl.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class ProductController {
             return ResponseEntity.status(400).body("No product with this ID.");
         }
         else {
-            return ResponseEntity.status(200).body(productService.getProductFromId(id));
+            return ResponseEntity.status(HttpStatus.OK).body(productService.getProductFromId(id));
         }
     }
 
@@ -48,7 +49,7 @@ public class ProductController {
         }
 
         productService.addProduct(product);
-        return ResponseEntity.status(200).body(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
 
     @PostMapping("/products/{id}")
@@ -78,7 +79,7 @@ public class ProductController {
         newProduct.setAvailable(product.getAvailable());
 
         Product toShow = productService.addProduct(product);
-        return ResponseEntity.status(200).body(toShow);
+        return ResponseEntity.status(HttpStatus.OK).body(toShow);
     }
 
 

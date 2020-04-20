@@ -44,11 +44,11 @@ public class WebController {
         return "cart";
     }
 
-    @PostMapping(value = "/addToCart")
-    @ResponseBody
-    public ResponseEntity<Object> addToCart(){
-
-    }
+//    @PostMapping(value = "/addToCart")
+//    @ResponseBody
+//    public ResponseEntity<Object> addToCart(){
+//
+//    }
 
     @GetMapping(value = "/succesfulOrder")
     public String succesfulOrder (Model model) {
