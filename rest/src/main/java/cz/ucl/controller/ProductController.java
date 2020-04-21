@@ -56,13 +56,13 @@ public class ProductController {
     public ResponseEntity<Object> updateProduct(@RequestBody Product product, @PathVariable int id){
         //Validations
         if (productService.getProductFromId(id).isEmpty()){
-            return ResponseEntity.status(400).body("Product with this ID does not exist");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with this ID does not exist");
         }
         if (product.getPrice() > 100000.00 || product.getPrice() < 0){
-            return ResponseEntity.status(400).body("Price is below 0 or higher than 100000");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Price is below 0 or higher than 100000");
         }
         if (product.getAvailable() < 0){
-            return ResponseEntity.status(400).body("There must be at least one product");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("There must be at least one product");
         }
 
         Optional<Product> optionalProduct = productService.getProductFromId(id);
@@ -86,11 +86,11 @@ public class ProductController {
     @DeleteMapping(value = "/products/{id}")
     public ResponseEntity<Object> deleteProduct(HttpEntity<String> httpEntity, @PathVariable Integer id){
         if (productService.getProductFromId(id).isEmpty()){
-            return ResponseEntity.status(400).body("Product with this ID does not exist");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with this ID does not exist");
         }
         else {
             productService.deleteProduct(id);
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(HttpStatus.OK).build();
         }
     }
 

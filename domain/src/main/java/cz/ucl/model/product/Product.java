@@ -4,6 +4,7 @@ import cz.ucl.model.shopOrder.ShopOrder;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +18,7 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    @PositiveOrZero
     private int available;
 
     @ManyToOne
