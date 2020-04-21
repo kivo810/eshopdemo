@@ -45,8 +45,4 @@ public class CartService {
         return finalPrice;
     }
 
-    //TODO -- complete + logic
-    public int calculatAvailable(){
-        return 0;
-    }
 }
