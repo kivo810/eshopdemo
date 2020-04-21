@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -75,7 +76,18 @@ public class WebController {
         List<Product> orderedProduct = cartService.getCart();
         order.setProductList(orderedProduct);
         order.setFinalPrice(finalPrice);
+        order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
+        order.setCustomerId(2);
+
+        //CUSTOMER
+        order.setName(input.get("name"));
+        order.setAddress(input.get("address"));
+        order.setEmail(input.get("email"));
+        order.setCardNumber(input.get("creditCardNumber"));
         order.setAge(Integer.parseInt(input.get("age")));
+
+        orderService.createOrder(order);
+        cartService.removeCart();
 
         return ResponseEntity.status(HttpStatus.OK).body(order);
     }
