@@ -24,8 +24,8 @@ public class CartService {
         cart.add(product);
     }
 
-    public void deleteProductFromCartViaId(int id){
-        cart.remove(id);
+    public void deleteProductFromCartViaIdx(int idx){
+        cart.remove(idx);
     }
 
 //    public void deleteProductFromCart(Product product){
@@ -45,4 +45,11 @@ public class CartService {
         return finalPrice;
     }
 
+    public void deleteAvailable(Product product){
+        product.setAvailable(product.getAvailable() - 1);
+    }
+
+    public void addAvailable(Product product) {
+        product.setAvailable(product.getAvailable() + 1);
+    }
 }

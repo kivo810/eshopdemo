@@ -50,25 +50,29 @@ public class WebController {
 
     //DONE
     @PostMapping(value = "/add")
+    @ResponseBody
     public ResponseEntity<Object> addProductToCart(@RequestParam Map<String, String> input){
         if (productService.getProductFromId(Integer.parseInt(input.get("prodId"))).isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
         }
         Optional<Product> product = productService.getProductFromId(Integer.parseInt(input.get("productId")));
         cartService.addProductToCart(product.get());
+        cartService.deleteAvailable(product.get());
         return ResponseEntity.status(HttpStatus.OK).body(product.get());
     }
 
     //DONE
     @DeleteMapping(value = "/remove")
+    @ResponseBody
     public ResponseEntity<Object> removeProductFromCart(@RequestParam Map<String, String> input) {
-        cartService.deleteProductFromCartViaId(Integer.parseInt(input.get("prodIndex")));
+        cartService.deleteProductFromCartViaIdx(Integer.parseInt(input.get("prodIndex")));
 
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
     }
 
     //TODO -- complete order, write to DB
     @PostMapping(value = "/order")
+    @ResponseBody
     public ResponseEntity<Object> completeOrder(@RequestParam Map<String, String> input) {
         Double finalPrice = Double.valueOf(input.get("finalPrice"));
 
