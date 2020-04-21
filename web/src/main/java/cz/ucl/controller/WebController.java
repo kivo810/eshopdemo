@@ -51,17 +51,12 @@ public class WebController {
     //DONE
     @PostMapping(value = "/add")
     public ResponseEntity<Object> addProductToCart(@RequestParam Map<String, String> input){
-//        if (productService.getProductFromId(Integer.parseInt(input.get("productId"))).isEmpty()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
-//        }
-//        Optional<Product> product = productService.getProductFromId(Integer.parseInt(input.get("productId")));
-//        cartService.addProductToCart(product.get());
-//        return ResponseEntity.status(HttpStatus.OK).body(product.get());
-        for (Product product: productService.getAllProducts()
-             ) {
-            cartService.addProductToCart(product);
+        if (productService.getProductFromId(Integer.parseInt(input.get("productId"))).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
         }
-        return ResponseEntity.status(HttpStatus.OK).body("OK");
+        Optional<Product> product = productService.getProductFromId(Integer.parseInt(input.get("productId")));
+        cartService.addProductToCart(product.get());
+        return ResponseEntity.status(HttpStatus.OK).body(product.get());
     }
 
     //DONE
@@ -75,34 +70,22 @@ public class WebController {
     //TODO -- complete order, write to DB
     @PostMapping(value = "/order")
     public ResponseEntity<Object> completeOrder(@RequestParam Map<String, String> input) {
-//        Double finalPrice = Double.valueOf(input.get("finalPrice"));
-
-//        ShopOrder order = new ShopOrder();
-//        List<Product> orderedProduct = cartService.getCart();
-//        order.setProductList(orderedProduct);
-//        order.setFinalPrice(14.47);
-//        order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
-//        order.setCustomerId(2);
-//
-//        //CUSTOMER
-//        order.setName(input.get("name"));
-//        order.setAddress(input.get("address"));
-//        order.setEmail(input.get("email"));
-//        order.setCardNumber(input.get("creditCardNumber"));
-//        order.setAge(Integer.parseInt(input.get("age")));
+        Double finalPrice = Double.valueOf(input.get("finalPrice"));
 
         ShopOrder order = new ShopOrder();
-        order.setProductList(productService.getAllProducts());
+        List<Product> orderedProduct = cartService.getCart();
+        order.setProductList(orderedProduct);
         order.setFinalPrice(14.47);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
-//        order.setCustomerId(2);
+        order.setCustomerId(2);
 
         //CUSTOMER
-        order.setName("rei");
-        order.setAddress("copa");
-        order.setEmail(input.get("aa@ew.ew"));
-        order.setCardNumber("4111111111111111");
-        order.setAge(55);
+        order.setName(input.get("name"));
+        order.setAddress(input.get("address"));
+        order.setEmail(input.get("email"));
+        order.setCardNumber(input.get("creditCardNumber"));
+        order.setAge(Integer.parseInt(input.get("age")));
+
 
         orderService.createOrder(order);
         cartService.removeCart();
