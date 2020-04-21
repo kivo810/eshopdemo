@@ -40,6 +40,8 @@ public class ShopOrder {
     @Max(value = 150, message = "Age should not be greater than 150")
     private int age;
 
+    //To string what is ordered
+    private String orderedProducts;
     @OneToMany
     private List<Product> productList;
 }

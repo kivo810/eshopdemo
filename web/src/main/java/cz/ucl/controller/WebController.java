@@ -51,7 +51,7 @@ public class WebController {
     //DONE
     @PostMapping(value = "/add")
     public ResponseEntity<Object> addProductToCart(@RequestParam Map<String, String> input){
-        if (productService.getProductFromId(Integer.parseInt(input.get("productId"))).isEmpty()) {
+        if (productService.getProductFromId(Integer.parseInt(input.get("prodId"))).isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
         }
         Optional<Product> product = productService.getProductFromId(Integer.parseInt(input.get("productId")));
@@ -61,8 +61,8 @@ public class WebController {
 
     //DONE
     @DeleteMapping(value = "/remove")
-    public ResponseEntity<Object> removeProductFromCart(@RequestParam int id) {
-        cartService.deleteProductFromCartViaId(id);
+    public ResponseEntity<Object> removeProductFromCart(@RequestParam Map<String, String> input) {
+        cartService.deleteProductFromCartViaId(Integer.parseInt(input.get("prodIndex")));
 
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
     }
@@ -85,6 +85,7 @@ public class WebController {
         order.setEmail(input.get("email"));
         order.setCardNumber(input.get("creditCardNumber"));
         order.setAge(Integer.parseInt(input.get("age")));
+        order.setOrderedProducts(input.get("orderedProducts"));
 
 
         orderService.createOrder(order);
