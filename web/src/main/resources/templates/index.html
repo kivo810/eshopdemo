@@ -34,7 +34,6 @@
             <th scope="col">Description</th>
             <th scope="col">Available</th>
             <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -55,8 +54,6 @@
                 </button>
             </td>
         </tr>
-
-
         </tbody>
     </table>
 
@@ -68,7 +65,7 @@
     <script>
         $(document).ready(function(){
             $(".add").click(function(e){
-                let productId = e.target.id;
+                let prodId = e.target.id;
                 $.post(
                     'http://localhost:8080/add',
                     { headers: {
