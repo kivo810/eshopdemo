@@ -1,6 +1,7 @@
 package cz.ucl.controller;
 
 import cz.ucl.model.product.Product;
+import cz.ucl.model.shopOrder.ShopOrder;
 import cz.ucl.service.CartService;
 import cz.ucl.service.OrderService;
 import cz.ucl.service.ProductService;
@@ -27,6 +28,7 @@ public class WebController {
     @Autowired
     private CartService cartService;
 
+
     @GetMapping(value = "/")
     public String index(Model model){
         List<Product> products = productService.getAllProducts();
@@ -45,18 +47,18 @@ public class WebController {
         return "cart";
     }
 
-    //TODO -- add product to cart
+    //DONE
     @PostMapping(value = "/add")
     public ResponseEntity<Object> addProductToCart(@RequestParam Map<String, String> input){
-        if (productService.getProductFromId(Integer.valueOf(input.get("productId"))).isEmpty()) {
+        if (productService.getProductFromId(Integer.parseInt(input.get("productId"))).isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
         }
-        Optional<Product> product = productService.getProductFromId(Integer.valueOf(input.get("productId")));
+        Optional<Product> product = productService.getProductFromId(Integer.parseInt(input.get("productId")));
         cartService.addProductToCart(product.get());
         return ResponseEntity.status(HttpStatus.OK).body(product.get());
     }
 
-    //TODO -- remove product from cart
+    //DONE
     @DeleteMapping(value = "/remove/{id}")
     public ResponseEntity<Object> removeProductFromCart(@PathVariable int id) {
         cartService.deleteProductFromCartViaId(id);
@@ -65,6 +67,18 @@ public class WebController {
     }
 
     //TODO -- complete order, write to DB
+    @PostMapping(value = "/order")
+    public ResponseEntity<Object> completeOrder(@RequestParam Map<String, String> input) {
+        Double finalPrice = Double.valueOf(input.get("finalPrice"));
+
+        ShopOrder order = new ShopOrder();
+        List<Product> orderedProduct = cartService.getCart();
+        order.setProductList(orderedProduct);
+        order.setFinalPrice(finalPrice);
+        order.setAge(Integer.parseInt(input.get("age")));
+
+        return ResponseEntity.status(HttpStatus.OK).body(order);
+    }
 
     @GetMapping(value = "/succesfulOrder")
     public String succesfulOrder (Model model) {
