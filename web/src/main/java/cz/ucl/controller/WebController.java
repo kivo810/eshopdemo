@@ -70,21 +70,34 @@ public class WebController {
     //TODO -- complete order, write to DB
     @PostMapping(value = "/order")
     public ResponseEntity<Object> completeOrder(@RequestParam Map<String, String> input) {
-        Double finalPrice = Double.valueOf(input.get("finalPrice"));
+//        Double finalPrice = Double.valueOf(input.get("finalPrice"));
+
+//        ShopOrder order = new ShopOrder();
+//        List<Product> orderedProduct = cartService.getCart();
+//        order.setProductList(orderedProduct);
+//        order.setFinalPrice(14.47);
+//        order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
+//        order.setCustomerId(2);
+//
+//        //CUSTOMER
+//        order.setName(input.get("name"));
+//        order.setAddress(input.get("address"));
+//        order.setEmail(input.get("email"));
+//        order.setCardNumber(input.get("creditCardNumber"));
+//        order.setAge(Integer.parseInt(input.get("age")));
 
         ShopOrder order = new ShopOrder();
-        List<Product> orderedProduct = cartService.getCart();
-        order.setProductList(orderedProduct);
-        order.setFinalPrice(finalPrice);
+        order.setProductList(productService.getAllProducts());
+        order.setFinalPrice(14.47);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
-        order.setCustomerId(2);
+//        order.setCustomerId(2);
 
         //CUSTOMER
-        order.setName(input.get("name"));
-        order.setAddress(input.get("address"));
-        order.setEmail(input.get("email"));
-        order.setCardNumber(input.get("creditCardNumber"));
-        order.setAge(Integer.parseInt(input.get("age")));
+        order.setName("rei");
+        order.setAddress("copa");
+        order.setEmail(input.get("aa@ew.ew"));
+        order.setCardNumber("4111111111111111");
+        order.setAge(55);
 
         orderService.createOrder(order);
         cartService.removeCart();
