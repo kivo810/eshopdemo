@@ -79,7 +79,7 @@ public class WebController {
         ShopOrder order = new ShopOrder();
         List<Product> orderedProduct = cartService.getCart();
         order.setProductList(orderedProduct);
-        order.setFinalPrice(14.47);
+        order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
         order.setCustomerId(2);
 
