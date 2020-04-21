@@ -18,6 +18,8 @@ public class OrderService {
         orderRepository.save(shopOrder);
     }
 
+    public List<ShopOrder> getOrders() { return orderRepository.findAll(); }
+
     public List<ShopOrder> orderByCompletedAt() {
         return orderRepository.orderByCompletedAt();
     }

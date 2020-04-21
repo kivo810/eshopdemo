@@ -17,6 +17,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @GetMapping(value = "/orders")
+    public ResponseEntity<Object> getOrders(){
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getOrders());
+    }
+
     @GetMapping(value = "/order/{id}")
     public ResponseEntity<Object> getOrder(HttpEntity<String> httpEntity, @PathVariable Integer id){
         Optional<ShopOrder> order = orderService.getOrderById(id);
