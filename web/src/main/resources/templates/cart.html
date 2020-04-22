@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Welcome</title>
+    <title>CART</title>
     <link href="webjars/bootstrap/4.4.1-1/css/bootstrap.min.css"
           rel="stylesheet">
 </head>
@@ -118,7 +118,7 @@
     <script>
         $(document).ready(function(){
             $(".remove").click(function(e){
-                let productIndex = e.target.id;
+                let prodIndex = e.target.id;
                 $.delete(
                     'http://localhost:8080/remove',
                     {
@@ -163,7 +163,7 @@
                         },
                         ...dtoIn
                     },
-                    function(data,status){ window.location.replace("http://localhost:8080/successfulOrder"); }
+                    function(data,status){ window.location.replace("http://localhost:8080/orderCompleted"); }
                 );
             });
         });

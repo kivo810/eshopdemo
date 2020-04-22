@@ -98,8 +98,8 @@ public class WebController {
         Double finalPrice = Double.valueOf(input.get("finalPrice"));
 
         ShopOrder order = new ShopOrder();
-        List<Product> orderedProduct = cartService.getCart();
-        order.setProductList(orderedProduct);
+//        List<Product> orderedProduct = cartService.getCart();
+//        order.setProductList(orderedProduct);
         order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
 
@@ -117,11 +117,11 @@ public class WebController {
         return ResponseEntity.status(HttpStatus.OK).body(order);
     }
 
-    @GetMapping(value = "/succesfulOrder")
-    public String succesfulOrder (Model model) {
+    @GetMapping(value = "/orderCompleted")
+    public String orderCompleted (Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products",products);
 
-        return "succesfulOrder";
+        return "orderCompleted";
     }
 }
