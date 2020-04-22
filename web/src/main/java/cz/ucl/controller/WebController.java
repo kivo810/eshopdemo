@@ -63,10 +63,31 @@ public class WebController {
     }
 
     //DONE
+    @PostMapping(value = "/add/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> addProductToCart(@PathVariable int id){
+        if (productService.getProductFromId(id).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist. Wrong ID.");
+        }
+        Optional<Product> product = productService.getProductFromId(id);
+        cartService.addProductToCart(product.get());
+        cartService.deleteAvailable(product.get());
+        return ResponseEntity.status(HttpStatus.OK).body(product.get());
+    }
+
+    //DONE
     @DeleteMapping(value = "/remove")
     @ResponseBody
     public ResponseEntity<Object> removeProductFromCart(@RequestParam Map<String, String> input) {
         cartService.deleteProductFromCartViaIdx(Integer.parseInt(input.get("prodIndex")));
+
+        return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
+    }
+
+    @DeleteMapping(value = "/remove/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> removeProductFromCart(@PathVariable int id) {
+        cartService.deleteProductFromCartViaIdx(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
     }
