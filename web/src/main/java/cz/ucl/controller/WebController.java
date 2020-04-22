@@ -98,7 +98,12 @@ public class WebController {
         Double finalPrice = Double.valueOf(input.get("finalPrice"));
 
         ShopOrder order = new ShopOrder();
-//        List<Product> orderedProduct = cartService.getCart();
+        List<Product> orderedProduct = cartService.getCart();
+        String orderString = "";
+        for (Product product : orderedProduct) {
+            orderString = orderString + product.getName() + ", ";
+        }
+        order.setOrderString(orderString);
 //        order.setProductList(orderedProduct);
         order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
@@ -107,7 +112,7 @@ public class WebController {
         order.setName(input.get("name"));
         order.setAddress(input.get("address"));
         order.setEmail(input.get("email"));
-        order.setCardNumber(input.get("creditCardNumber"));
+        order.setCardNumber(input.get("cardNumber"));
         order.setAge(Integer.parseInt(input.get("age")));
 
         //Hibernate Error
