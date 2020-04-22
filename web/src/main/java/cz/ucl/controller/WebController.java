@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -84,10 +83,10 @@ public class WebController {
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
     }
 
-    @DeleteMapping(value = "/remove/{id}")
+    @DeleteMapping(value = "/remove/{index}")
     @ResponseBody
-    public ResponseEntity<Object> removeProductFromCart(@PathVariable int id) {
-        cartService.deleteProductFromCartViaIdx(id);
+    public ResponseEntity<Object> removeProductFromCart(@PathVariable int index) {
+        cartService.deleteProductFromCartViaIdx(index);
 
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart());
     }
@@ -100,18 +99,9 @@ public class WebController {
 
         ShopOrder order = new ShopOrder();
         List<Product> orderedProduct = cartService.getCart();
-//        order.setProductList(orderedProduct);
-//        String[] integerStrings = input.get("orderedProducts").split(",");
-//        List<Product> orderProd = new ArrayList<>();
-//        int[] integers = new int[integerStrings.length];
-//        for (int i = 0; i < integers.length; i++){
-//            Optional<Product> product = productService.getProductFromId(Integer.parseInt(integerStrings[i]));
-//            orderProd.add(product.get());
-//        }
         order.setProductList(orderedProduct);
         order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
-        order.setCustomerId(2);
 
         //CUSTOMER
         order.setName(input.get("name"));
@@ -119,9 +109,8 @@ public class WebController {
         order.setEmail(input.get("email"));
         order.setCardNumber(input.get("creditCardNumber"));
         order.setAge(Integer.parseInt(input.get("age")));
-        order.setOrderedProducts(input.get("orderedProducts"));
 
-
+        //Hibernate Error
         orderService.createOrder(order);
         cartService.removeCart();
 

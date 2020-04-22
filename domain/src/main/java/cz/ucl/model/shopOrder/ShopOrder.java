@@ -26,7 +26,6 @@ public class ShopOrder {
     private int id;
     private Timestamp completedAt;
     private Double finalPrice;
-    private int customerId;
 
     //CUSTOMER
     @NotEmpty(message = "Name cannot be empty")
@@ -40,8 +39,6 @@ public class ShopOrder {
     @Max(value = 150, message = "Age should not be greater than 150")
     private int age;
 
-    //To string what is ordered
-    private String orderedProducts;
     @OneToMany
     private List<Product> productList;
 }
