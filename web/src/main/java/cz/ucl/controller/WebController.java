@@ -87,6 +87,7 @@ public class WebController {
             Optional<Product> product = productService.getProductFromId(Integer.parseInt(integerStrings[i]));
             orderProd.add(product.get());
         }
+        order.setProductList(orderProd);
         order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
         order.setCustomerId(2);
