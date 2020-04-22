@@ -99,16 +99,16 @@ public class WebController {
         Double finalPrice = Double.valueOf(input.get("finalPrice"));
 
         ShopOrder order = new ShopOrder();
-//        List<Product> orderedProduct = cartService.getCart();
+        List<Product> orderedProduct = cartService.getCart();
 //        order.setProductList(orderedProduct);
-        String[] integerStrings = input.get("orderedProducts").split(",");
-        List<Product> orderProd = new ArrayList<>();
-        int[] integers = new int[integerStrings.length];
-        for (int i = 0; i < integers.length; i++){
-            Optional<Product> product = productService.getProductFromId(Integer.parseInt(integerStrings[i]));
-            orderProd.add(product.get());
-        }
-        order.setProductList(orderProd);
+//        String[] integerStrings = input.get("orderedProducts").split(",");
+//        List<Product> orderProd = new ArrayList<>();
+//        int[] integers = new int[integerStrings.length];
+//        for (int i = 0; i < integers.length; i++){
+//            Optional<Product> product = productService.getProductFromId(Integer.parseInt(integerStrings[i]));
+//            orderProd.add(product.get());
+//        }
+        order.setProductList(orderedProduct);
         order.setFinalPrice(finalPrice);
         order.setCompletedAt(new Timestamp(System.currentTimeMillis()));
         order.setCustomerId(2);
